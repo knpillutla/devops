@@ -1,5 +1,5 @@
 ##Self Dockerimage on latest build##
-version: '3.3'
+version: '3.0'
 services:
   nginx-lb:
     image: nginx
