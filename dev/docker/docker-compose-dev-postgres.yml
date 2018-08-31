@@ -1,0 +1,11 @@
+##Self Dockerimage on latest build##
+version: '3.0'
+services:
+  mypostgres:
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=postgres

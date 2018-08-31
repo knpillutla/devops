@@ -1,0 +1,33 @@
+##Self Dockerimage on latest build##
+version: '3.0'
+services:
+  nginx-lb:
+    image: nginx
+    restart: always
+    ports:
+      - 80:80
+    environment:
+      - JAVA_OPTS=-Xmx128m
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.0.0
+    restart: always
+    ports:
+      - 32181:32181
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - ZOOKEEPER_CLIENT_PORT=32181
+      - ZOOKEEPER_TICK_TIME=2000
+
+      
+  kafka:
+    depends_on:
+      - zookeeper  
+    image: confluentinc/cp-kafka:5.0.0
+    restart: always
+    ports:
+      - 29092:29092
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - KAFKA_ZOOKEEPER_CONNECT=192.168.56.1:32181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://192.168.56.1:29092
