@@ -3,6 +3,7 @@ version: '3.0'
 services:
   nginx-lb:
     image: nginx
+    container_name: nginx
     restart: always
     ports:
       - 80:80
@@ -11,6 +12,7 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper:5.0.0
+    container_name: zookeeper
     restart: always
     ports:
       - 32181:32181
@@ -24,6 +26,7 @@ services:
     depends_on:
       - zookeeper  
     image: confluentinc/cp-kafka:5.0.0
+    container_name: kafka
     restart: always
     ports:
       - 29092:29092

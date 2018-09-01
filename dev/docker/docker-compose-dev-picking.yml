@@ -1,11 +1,22 @@
 ##Self Dockerimage on latest build##
 version: '3.0'
 services:
+  config-server:
+    image: wms/configservice:latest
+    container_name: config-server
+    ports:
+      - 8888:8888
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_PROFILES_ACTIVE=dev
+    logging:
+        driver: json-file
+
   picking:
     depends_on:
-      - mypostgres
-      - kafka
-    image: wmspicking:latest
+      - config-server
+    image: wms/picking
+    container_name: picking
     ports:
       - 9093:9093
       - 8000:8000
