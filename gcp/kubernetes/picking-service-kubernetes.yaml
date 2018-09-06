@@ -36,6 +36,6 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
         - name: CONFIG_SERVICE
-          value: http://config
+          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
         ports:
         - containerPort: 9093
