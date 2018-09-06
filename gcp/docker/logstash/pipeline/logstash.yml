@@ -1,0 +1,2 @@
+xpack.monitoring.enabled: false
+xpack.monitoring.elasticsearch.url: ["http://8e4d5fe101464c3990d0ce2f0622c2df.us-central1.gcp.cloud.es.io:9243"]

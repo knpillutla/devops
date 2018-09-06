@@ -1,0 +1,66 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: wms-app
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: wms-app
+  template:
+    metadata:
+      labels:
+        app: wms-app
+    spec:
+      containers:
+      - name: config
+        image: gcr.io/wms-as-a-service/configservice
+        envFrom:
+        - configMapRef:
+            name: wms-env-config        
+        resources: 
+          limits:
+            cpu: 100m
+            memory: 250Mi
+          requests:
+            cpu: 10m
+            memory: 125Mi
+        ports:
+        - name: http
+          containerPort: 8888
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        - name: KAFKA_HOST
+          value: "10.150.0.2"
+        - name: POSTGRES_HOST
+          value: "35.199.61.35"          
+        - name: LOG_DIR
+          value: "/var/logs"                    
+      - name: picking
+        image: gcr.io/wms-as-a-service/picking
+        envFrom:
+        - configMapRef:
+            name: wms-env-config        
+        resources: 
+          limits:
+            cpu: 100m
+            memory: 250Mi
+          requests:
+            cpu: 10m
+            memory: 125Mi
+        ports:
+        - name: http
+          containerPort: 9093
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        - name: KAFKA_HOST
+          value: "10.150.0.2"
+        - name: POSTGRES_HOST
+          value: "35.199.61.35"          
+        - name: LOG_DIR
+          value: "/var/logs"                    

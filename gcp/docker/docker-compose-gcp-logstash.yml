@@ -1,0 +1,20 @@
+##Self Dockerimage on latest build##
+#logstash --modules netflow -M "netflow.var.input.udp.port=3555" -f /etc/logstash/conf.d/logstash-file.conf (may need to add to logstash.yml)
+version: '3.0'
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.3.2
+    container_name: logstash
+    command: logstash -f /etc/logstash/conf.d/logstash-file.conf
+    volumes:
+      - ./logstash/config:/etc/logstash/conf.d
+      - ./logs:/var/log
+    ports:
+      - "5000:5000"
+    environment:
+      - cloud.id=elk-stack:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDhlNGQ1ZmUxMDE0NjRjMzk5MGQwY2UyZjA2MjJjMmRmJGE5ZTBkNzYxYjVlOTQ1YjFiZjBhNDM4ZWRhYWNkOGQ2
+      - cloud.auth="elastic:4EvMozWdQfRG5BblOfQCRDTD"
+     
+volumes:
+  esdata1:
+    driver: local  

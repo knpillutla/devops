@@ -1,0 +1,46 @@
+##Self Dockerimage on latest build##
+version: '3.0'
+services:
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.5.0
+    container_name: logstash
+    command: logstash -f /etc/logstash/conf.d/logstash-file.conf
+    volumes:
+      - ./logstash/config:/etc/logstash/conf.d
+      - ./logs:/var/log
+    ports:
+      - "5000:5000"
+     environment:
+      - cloud.id=elk-stack:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvJDhlNGQ1ZmUxMDE0NjRjMzk5MGQwY2UyZjA2MjJjMmRmJGE5ZTBkNzYxYjVlOTQ1YjFiZjBhNDM4ZWRhYWNkOGQ2
+      - cloud.auth="elastic:4EvMozWdQfRG5BblOfQCRDTD"
+     
+  config-server:
+    image: wms/configservice
+    container_name: config-server
+    ports:
+      - 8888:8888
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_PROFILES_ACTIVE=gcp
+      - KAFKA_HOST=35.221.18.46
+    logging:
+        driver: json-file
+
+  picking:
+    depends_on:
+      - config-server
+    image: wms/picking
+    container_name: picking
+    ports:
+      - 9093:9093
+      - 8000:8000
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_PROFILES_ACTIVE=gcp
+      - KAFKA_HOST=35.221.18.46
+      - POSTGRES_HOST=35.199.61.35
+      - LOG_DIR=./logs
+
+volumes:
+  esdata1:
+    driver: local  

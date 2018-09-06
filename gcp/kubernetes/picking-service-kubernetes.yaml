@@ -1,0 +1,50 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: picking-deployment
+spec:
+  selector:
+    matchLabels:
+      app: wms
+      tier: backend
+      track: stable
+  replicas: 4 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: wms
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: picking
+        image: gcr.io/wms-as-a-service/picking
+        envFrom:
+        - configMapRef:
+            name: wms-env-config        
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        - name: KAFKA_HOST
+          value: "10.128.0.2"
+        - name: POSTGRES_HOST
+          value: "35.199.61.35"          
+        - name: LOG_DIR
+          value: "/var/logs"          
+        - name: CONFIG_SERVICE_URL
+          value: "http://35.221.50.183:32444"          
+        ports:
+        - containerPort: 9093
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: picking-service
+spec:
+  selector:
+      app: wms
+      tier: backend
+  ports:
+    - port: 9093
+      targetPort: 32445
+  type: LoadBalancer
