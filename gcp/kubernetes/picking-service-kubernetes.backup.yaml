@@ -32,10 +32,19 @@ spec:
       containers:
       - name: picking
         image: gcr.io/wms-as-a-service/picking
+        envFrom:
+        - configMapRef:
+            name: wms-env-config        
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
-        - name: CONFIG_SERVICE
-          value: http://config
+        - name: KAFKA_HOST
+          value: "10.128.0.2"
+        - name: POSTGRES_HOST
+          value: "35.199.61.35"          
+        - name: LOG_DIR
+          value: "/var/logs"          
+        - name: CONFIG_SERVICE_URL
+          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
         ports:
         - containerPort: 9093

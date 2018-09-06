@@ -1,3 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config
+spec:
+  selector:
+      app: config-app
+      tier: backend      
+  ports:
+    - port: 8888
+      protocol: TCP
+      nodePort: 32444
+  type: NodePort
+---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
@@ -5,14 +19,14 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: wms
+      app: config-app
       tier: backend
       track: stable
-  replicas: 4 # tells deployment to run 2 pods matching the template
+  replicas: 4 # tells deployment to run 4 pods matching the template
   template:
     metadata:
       labels:
-        app: wms
+        app: config-app
         tier: backend
         track: stable
     spec:
@@ -35,17 +49,3 @@ spec:
         ports:
         - name: http
           containerPort: 8888
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: config-service
-spec:
-  selector:
-      app: wms
-      tier: backend      
-  ports:
-    - port: 8888
-      protocol: TCP
-      nodePort: 32444
-  type: NodePort
