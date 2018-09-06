@@ -37,13 +37,9 @@ spec:
         - configMapRef:
             name: wms-env-config        
         env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: "gcp"
         - name: KAFKA_HOST
           value: "10.128.0.2"
-        - name: POSTGRES_HOST
-          value: "35.199.61.35"          
-        - name: LOG_DIR
+        - name: GIT_URL
           value: "/var/logs"                    
         
         ports:
