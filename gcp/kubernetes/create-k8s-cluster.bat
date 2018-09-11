@@ -1,13 +1,15 @@
 call gcloud auth login
 call gcloud config set project wms-as-a-service
 call gcloud config set compute/zone us-east4-b
-call gcloud container clusters create wmscluster1
+rem call gcloud container clusters create wmscluster1
+rem for creating elastic search logging
+call gcloud container clusters create wmscluster1 --no-enable-cloud-logging
 call gcloud container clusters get-credentials wmscluster1
 call gcloud compute instances list
 call kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
 
 rem you can give yaml file as well for creating config maps from
-call kubectl create configmap wms-env-config --from-file=wms-env-config.conf
+rem call kubectl create configmap wms-env-config --from-file=wms-env-config.conf
 rem kubectl delete configmap wms-env-config
 rem kubectl describe configmap wms-env-config
 
@@ -56,4 +58,5 @@ rem kubectl delete deployment wms-app
 rem logs in kubernetes
 rem kubectl logs -f podname container-name
 rem kubectl logs -f wms-app-54b944cf49-gpx7m picking
+
 

@@ -1,0 +1,15 @@
+##Self Dockerimage on latest build##
+version: '3.0'
+services:
+  config-server:
+    image: wms/configservice
+    container_name: config-server
+    ports:
+      - 8888:8888
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_PROFILES_ACTIVE=gcp
+      - KAFKA_HOST=192.168.56.1:29092
+      - GIT_URL=https://github.com/knpillutla/appconfig
+    logging:
+        driver: json-file

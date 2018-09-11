@@ -33,9 +33,6 @@ spec:
       containers:
       - name: config
         image: gcr.io/wms-as-a-service/configservice
-        envFrom:
-        - configMapRef:
-            name: wms-env-config        
         env:
         - name: KAFKA_HOST
           value: "10.128.0.2"
