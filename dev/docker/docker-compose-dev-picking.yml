@@ -11,5 +11,6 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9093
-      - CONFIG_SERVICE=http://localhost:8888
+      - CONFIG_SERVICE=http://192.168.56.1:8888
+      - POSTGRES_HOST=192.168.56.1:5432
  
