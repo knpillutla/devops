@@ -38,6 +38,8 @@ spec:
           value: "10.128.0.2"
         - name: GIT_URL
           value: https://github.com/knpillutla/appconfig                    
+        - name: SERVER_PORT
+          value: 8888                  
         
         ports:
         - name: http

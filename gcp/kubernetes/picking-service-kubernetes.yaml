@@ -37,6 +37,8 @@ spec:
           value: "gcp"
         - name: CONFIG_SERVICE
           value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
+        - name: SERVER_PORT
+          value: 9093
         ports:
         - containerPort: 9093
       - name: logstash
