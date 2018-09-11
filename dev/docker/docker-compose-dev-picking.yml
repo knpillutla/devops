@@ -23,4 +23,6 @@ services:
     environment:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=9093
+       - KAFKA_HOST=192.168.56.1:29092
 
