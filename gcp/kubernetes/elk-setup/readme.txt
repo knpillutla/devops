@@ -6,7 +6,7 @@ Elasticsearch/Kibana stack needs to be added manually if the cluster is supposed
 gcloud container --project <PROJECT_ID> clusters create <CLUSTER_ID> --no-enable-cloud-logging
 
 2. Add a configured fluentd container to each running node by using a kubernetes DaemonSet.
-kubectl create -f fluentd-es.yaml
+kubectl create -f ./elk-setup/fluentd-es.yaml
 
 fluentd-es.yaml
 ===================
@@ -48,10 +48,10 @@ spec:
           path: /var/lib/docker/containers
 		  
 3. Add elasticsearch and kibana pods and services.
-kubectl create -f es-controller.yaml
-kubectl create -f es-service.yaml
-kubectl create -f kibana-controller.yaml
-kubectl create -f kibana-service.yaml
+kubectl create -f ./elk-setup/es-controller.yaml
+kubectl create -f ./elk-setup/es-service.yaml
+kubectl create -f ./elk-setup/kibana-controller.yaml
+kubectl create -f ./elk-setup/kibana-service.yaml
 
 Note below that the kubernetes.io/cluster-service: "true" label (present in the original files) has been removed. Having this label in the definitions resulted in termination of the running pods.
 
