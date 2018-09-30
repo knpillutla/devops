@@ -11,9 +11,28 @@ call build-docker-image-gcp-configservice.bat
 POPD
 
 PUSHD .
+call build-docker-image-gcp-customer-order.bat
+POPD
+
+PUSHD .
+call build-docker-image-gcp-orderplanner.bat
+POPD
+
+PUSHD .
+call build-docker-image-gcp-inventory.bat
+POPD
+
+PUSHD .
 call build-docker-image-gcp-picking.bat
 POPD
 
+PUSHD .
+call build-docker-image-gcp-packing.bat
+POPD
+
+PUSHD .
+call build-docker-image-gcp-shipping.bat
+POPD
 
 rem docker-compose -f docker-compose-gcp-elk.yml up --build -d
 rem docker-compose -f docker-compose-gcp-kafka.yml up --build -d

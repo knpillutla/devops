@@ -36,6 +36,8 @@ spec:
         env:
         - name: KAFKA_HOST
           value: "10.128.0.2"
+        - name: DB_URL
+          value: "jdbc:postgresql://35.199.61.35/postgres"
         - name: GIT_URL
           value: https://github.com/knpillutla/appconfig                    
         - name: SERVER_PORT
@@ -44,3 +46,12 @@ spec:
         ports:
         - name: http
           containerPort: 8888
+      - name: logstash
+        image: docker.elastic.co/logstash/logstash:6.3.2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        - name: CONFIG_SERVICE
+          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
+        ports:
+        - containerPort: 5000

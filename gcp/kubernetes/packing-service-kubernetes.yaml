@@ -1,37 +1,37 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: picking
+  name: packing
 spec:
   selector:
-      app: picking-app
+      app: packing-app
       tier: backend
   ports:
     - port: 8080
-      nodePort: 32449
+      nodePort: 32448
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: picking-deployment
+  name: packing-deployment
 spec:
   selector:
     matchLabels:
-      app: picking-app
+      app: packing-app
       tier: backend
       track: stable
   replicas: 4 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: picking-app
+        app: packing-app
         tier: backend
         track: stable
     spec:
       containers:
-      - name: picking
-        image: gcr.io/wms-as-a-service/picking
+      - name: packing
+        image: gcr.io/wms-as-a-service/packing
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
@@ -52,5 +52,7 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
+        - name: CONFIG_SERVICE
+          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
         ports:
         - containerPort: 5000
