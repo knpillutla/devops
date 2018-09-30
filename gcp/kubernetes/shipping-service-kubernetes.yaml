@@ -21,7 +21,7 @@ spec:
       app: shipping-app
       tier: backend
       track: stable
-  replicas: 4 # tells deployment to run 2 pods matching the template
+  replicas: 1 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
@@ -36,15 +36,15 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
         - name: CONFIG_SERVICE
-          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
+          value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
         - name: SERVER_PORT
-          value: 8080
+          value: "8080"
         - name: KAFKA_HOST
           value: "10.128.0.2"
         - name: DB_URL
           value: "jdbc:postgresql://35.199.61.35/postgres"
         - name: GIT_URL
-          value: https://github.com/knpillutla/appconfig                    
+          value: "https://github.com/knpillutla/appconfig"                    
         ports:
         - containerPort: 8080
       - name: logstash

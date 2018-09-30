@@ -10,7 +10,7 @@ spec:
     - port: 8888
       protocol: TCP
       nodePort: 32444
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -22,7 +22,7 @@ spec:
       app: config-app
       tier: backend
       track: stable
-  replicas: 4 # tells deployment to run 4 pods matching the template
+  replicas: 1 # tells deployment to run 4 pods matching the template
   template:
     metadata:
       labels:
@@ -39,9 +39,9 @@ spec:
         - name: DB_URL
           value: "jdbc:postgresql://35.199.61.35/postgres"
         - name: GIT_URL
-          value: https://github.com/knpillutla/appconfig                    
+          value: "https://github.com/knpillutla/appconfig"                    
         - name: SERVER_PORT
-          value: 8888                  
+          value: "8888"                  
         
         ports:
         - name: http

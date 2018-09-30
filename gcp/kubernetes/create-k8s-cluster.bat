@@ -3,7 +3,7 @@ call gcloud config set project wms-as-a-service
 call gcloud config set compute/zone us-east4-b
 rem call gcloud container clusters create wmscluster1
 rem for creating elastic search logging
-call gcloud container clusters create wmscluster1 --no-enable-cloud-logging
+call gcloud container clusters create wmscluster1 --no-enable-cloud-logging --machine-type=custom-6-16288
 call gcloud container clusters get-credentials wmscluster1
 call gcloud compute instances list
 call kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
