@@ -62,4 +62,13 @@ kubectl describe deployment config-deployment
 kubectl describe pod config-xxxxx (get the pod name from kubectl get pods)
 kubectl describe service config 
 		  
-		  
+17. local consumer do not directly connect to kafka by default. Do the following to connect from external clients
+edit the server properties file
+ssh to kafka vm
+sudo vim /opt/kafka/config/server.properties
+Uncomment the line # advertised.listeners=PLAINTEXT://:9092 and replace with advertised.listeners=PLAINTEXT://[instance_public_id_address]:9092
+restart the kafka service
+sudo ./kafka-server-start.sh -daemon ../config/server.server.properties
+
+This should let you connect from remote producers and consumers
+
