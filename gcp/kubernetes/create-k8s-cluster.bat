@@ -14,16 +14,36 @@ rem kubectl delete configmap wms-env-config
 rem kubectl describe configmap wms-env-config
 
 rem delete deployments/services
+call kubectl delete deployment shipping-deployment
+call kubectl delete service shipping
+
+call kubectl delete deployment packing-deployment
+call kubectl delete service packing
+
 call kubectl delete deployment picking-deployment
 call kubectl delete service picking
+
+call kubectl delete deployment inventory-deployment
+call kubectl delete service inventory
+
+call kubectl delete deployment orderplanner-deployment
+call kubectl delete service orderplanner
+
+call kubectl delete deployment customer-order-deployment
+call kubectl delete service customer-order
+
 
 call kubectl delete deployment config-deployment
 call kubectl delete service config
 
 rem create deployments/services
 call kubectl apply -f config-service-kubernetes.yaml
+call kubectl apply -f customer-order-service-kubernetes.yaml
+call kubectl apply -f orderplanner-service-kubernetes.yaml
+call kubectl apply -f inventory-service-kubernetes.yaml
 call kubectl apply -f picking-service-kubernetes.yaml
-
+call kubectl apply -f packing-service-kubernetes.yaml
+call kubectl apply -f shipping-service-kubernetes.yaml
 rem display info for deployment
 rem kubectl describe deployment xxxx
 
