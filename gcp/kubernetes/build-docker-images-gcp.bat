@@ -7,6 +7,11 @@ rem endlocal
 call gcloud auth configure-docker
 
 PUSHD .
+call build-dependencies-gcp.bat
+POPD
+
+
+PUSHD .
 call build-docker-image-gcp-configservice.bat
 POPD
 
