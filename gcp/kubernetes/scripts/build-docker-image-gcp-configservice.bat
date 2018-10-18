@@ -3,7 +3,7 @@ call git clone https://github.com/knpillutla/configservice.git c:\tmp\wms-builds
 call cd c:\tmp\wms-builds\configservice
 call mvn clean package docker:build 
 call docker tag wms/configservice gcr.io/%1/configservice
-call docker push gcr.io/%1/configservice
+
 rem docker-compose -f docker-compose-gcp-elk.yml up --build -d
 rem docker-compose -f docker-compose-gcp-kafka.yml up --build -d
 rem docker-compose -f docker-compose-gcp-postgres.yml up --build -d

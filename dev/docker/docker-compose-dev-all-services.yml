@@ -84,3 +84,19 @@ services:
       - POSTGRES_HOST=192.168.56.1:5432
       - KAFKA_HOST=192.168.56.1:29092
  
+   eventMonitor:
+    image: wms/event-monitor
+    depends_on:
+      - orderplanner
+    container_name: eventMonitor
+    ports:
+      - 9016:9016
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=9016
+      - CONFIG_SERVICE=http://192.168.56.1:8888
+      - POSTGRES_HOST=192.168.56.1:5432
+      - KAFKA_HOST=192.168.56.1:29092
+      - REDIS_HOST=192.168.56.1
+      - REDIS_PORT=6379

@@ -6,37 +6,37 @@ rem endlocal
 
 call gcloud auth configure-docker
 
-PUSHD .
-call build-dependencies-gcp.bat
-POPD
+rem PUSHD .
+rem call build-dependencies-gcp.bat
+rem POPD
 
 
 PUSHD .
-call build-docker-image-gcp-configservice.bat
-POPD
-
-PUSHD .
-call build-docker-image-gcp-customer-order.bat
+call build-docker-image-gcp-configservice.bat %1
 POPD
 
 PUSHD .
-call build-docker-image-gcp-orderplanner.bat
+call build-docker-image-gcp-customer-order.bat %1
 POPD
 
 PUSHD .
-call build-docker-image-gcp-inventory.bat
+call build-docker-image-gcp-orderplanner.bat %1
 POPD
 
 PUSHD .
-call build-docker-image-gcp-picking.bat
+call build-docker-image-gcp-inventory.bat %1
 POPD
 
 PUSHD .
-call build-docker-image-gcp-packing.bat
+call build-docker-image-gcp-picking.bat %1
 POPD
 
 PUSHD .
-call build-docker-image-gcp-shipping.bat
+call build-docker-image-gcp-packing.bat %1
+POPD
+
+PUSHD .
+call build-docker-image-gcp-shipping.bat %1
 POPD
 
 rem docker-compose -f docker-compose-gcp-elk.yml up --build -d

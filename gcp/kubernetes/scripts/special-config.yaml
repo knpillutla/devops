@@ -1,0 +1,13 @@
+# Use config map for not-secret configuration data
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config
+data:
+  SPRING_PROFILES_ACTIVE: "gcp"
+  KAFKA_HOST: 10.150.0.2
+  DB_URL: "jdbc:postgresql://35.221.29.151/postgres"
+  GIT_URL: "https://github.com/knpillutla/appconfig"
+  SERVER_PORT: 8080
+  
