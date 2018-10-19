@@ -41,3 +41,8 @@ call rmdir /s /q c:\tmp\wms-builds\shipping
 call git clone https://github.com/knpillutla/shipping.git c:\tmp\wms-builds\shipping
 call cd c:\tmp\wms-builds\shipping
 call mvn clean package docker:build 
+
+call rmdir /s /q c:\tmp\wms-builds\eventMonitor
+call git clone https://github.com/knpillutla/event-monitor.git c:\tmp\wms-builds\eventMonitor
+call cd c:\tmp\wms-builds\eventMonitor
+call mvn clean package docker:build 
