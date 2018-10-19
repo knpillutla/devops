@@ -7,7 +7,7 @@ call docker tag wms/orderplanner gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/orderplanner
 call docker tag wms/packing gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/packing
 call docker tag wms/picking gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/picking
 call docker tag wms/shipping gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipping
-call docker tag wms/eventMonitor gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/eventMonitor
+call docker tag wms/event-monitor gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/event-monitor
 
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/customer-order
@@ -16,4 +16,4 @@ call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/orderplanner
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/packing
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/picking
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipping
-call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/eventMonitor
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/event-monitor
