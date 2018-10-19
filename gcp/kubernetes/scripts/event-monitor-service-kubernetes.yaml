@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: pieventMonitorcking
+  name: event-monitor
 spec:
   selector:
       app: eventMonitor-app
@@ -14,7 +14,7 @@ spec:
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: eventMonitor-deployment
+  name: event-monitor-deployment
 spec:
   selector:
     matchLabels:

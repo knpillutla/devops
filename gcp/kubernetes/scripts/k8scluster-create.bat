@@ -11,5 +11,5 @@ call gcloud compute instances list
 call kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
 
 rem create post gres sql
-gcloud sql instances create mypostgres --database-version=POSTGRES_9_6 --cpu=2 --availability-type=regional --authorized-networks=0.0.0.0/0 --region=us-east4 --assign-ip --memory=4GiB
+rem gcloud sql instances create mypostgres --database-version=POSTGRES_9_6 --cpu=2 --availability-type=regional --authorized-networks=0.0.0.0/0 --region=us-east4 --assign-ip --memory=4GiB
 
