@@ -39,6 +39,10 @@ spec:
           value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
         - name: SERVER_PORT
           value: "8080"
+        - name: REDIS_HOST
+          value: "$(MYREDIS_SERVICE_HOST)"
+        - name: REDIS_PORT
+          value: "$(MYREDIS_SERVICE_PORT)"
         ports:
         - containerPort: 8080
       - name: logstash

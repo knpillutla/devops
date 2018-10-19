@@ -35,7 +35,7 @@ spec:
         image: gcr.io/bright-seer-219503/configservice
         env:
         - name: KAFKA_HOST
-          value: "10.150.0.2"
+          value: "35.236.200.183"
         - name: GIT_URL
           value: "https://github.com/knpillutla/appconfig"                    
         - name: SERVER_PORT
