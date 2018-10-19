@@ -1,7 +1,17 @@
-call docker push gcr.io/%1/configservice
-call docker push gcr.io/%1/customer-order
-call docker push gcr.io/%1/inventory
-call docker push gcr.io/%1/orderplanner
-call docker push gcr.io/%1/packing
-call docker push gcr.io/%1/picking
-call docker push gcr.io/%1/shipping
+SET GOOGLE_CLOUD_PROJECT_ID=bright-seer-219503
+ 
+call docker tag wms/configservice gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
+call docker tag wms/inventory gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/inventory
+call docker tag wms/orderplanner gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/orderplanner
+call docker tag wms/packing gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/packing
+call docker tag wms/picking gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/picking
+call docker tag wms/shipping gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipping
+
+
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/customer-order
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/inventory
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/orderplanner
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/packing
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/picking
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipping

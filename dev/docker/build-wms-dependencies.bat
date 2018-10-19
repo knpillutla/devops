@@ -1,3 +1,4 @@
+PUSHD .
 call rmdir /s /q c:\tmp\wms-builds\wms-util
 call git clone https://github.com/knpillutla/wms-util.git c:\tmp\wms-builds\wms-util
 call cd c:\tmp\wms-builds\wms-util
@@ -33,3 +34,4 @@ call rmdir /s /q c:\tmp\wms-builds\shipping-idd
 call git clone https://github.com/knpillutla/shipping-idd.git c:\tmp\wms-builds\shipping-idd
 call cd c:\tmp\wms-builds\shipping-idd
 call mvn clean compile package
+POPD
