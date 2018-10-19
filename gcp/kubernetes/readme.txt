@@ -68,7 +68,7 @@ ssh to kafka vm
 sudo vim /opt/kafka/config/server.properties
 Uncomment the line # advertised.listeners=PLAINTEXT://:9092 and replace with advertised.listeners=PLAINTEXT://[instance_public_id_address]:9092
 restart the kafka service
-sudo ./kafka-server-start.sh -daemon ../config/server.server.properties
+sudo /opt/kafka/bin/kafka-server-start.sh -daemon /opt/kafka/config/server.server.properties
 
 This should let you connect from remote producers and consumers
 
