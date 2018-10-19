@@ -1,7 +1,8 @@
 
 rem create deployments/services
-call kubectl apply -f config-service-kubernetes.yaml
-timeout /t 40 /nobreak > NUL
+rem call config service deployment in initiate service to get time for it to startup, for others to get config from this service
+rem call kubectl apply -f config-service-kubernetes.yaml
+rem timeout /t 40 /nobreak > NUL
 call kubectl apply -f customer-order-service-kubernetes.yaml
 call kubectl apply -f orderplanner-service-kubernetes.yaml
 call kubectl apply -f inventory-service-kubernetes.yaml
