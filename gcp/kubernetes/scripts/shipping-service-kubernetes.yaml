@@ -8,7 +8,7 @@ spec:
       tier: backend
   ports:
     - port: 8080
-      nodePort: 32450
+      nodePort: 32449
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
@@ -39,14 +39,12 @@ spec:
           value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
         - name: SERVER_PORT
           value: "8080"
-         ports:
+        ports:
         - containerPort: 8080
       - name: logstash
         image: docker.elastic.co/logstash/logstash:6.3.2
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
-        - name: CONFIG_SERVICE
-          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
         ports:
         - containerPort: 5000
