@@ -1,35 +1,7 @@
-call kubectl delete deployment shipping-deployment
-call kubectl delete service shipping
-
-call kubectl delete deployment packing-deployment
-call kubectl delete service packing
-
-call kubectl delete deployment picking-deployment
-call kubectl delete service picking
-
-call kubectl delete deployment inventory-deployment
-call kubectl delete service inventory
-
-call kubectl delete deployment orderplanner-deployment
-call kubectl delete service orderplanner
-
-call kubectl delete deployment event-monitor-deployment
-call kubectl delete service event-monitor
-
-call kubectl delete deployment customer-order-deployment
-call kubectl delete service customer-order
-
-
-call kubectl delete deployment config-deployment
-call kubectl delete service config
-
-rem call kubectl delete deployment nginx-deployment
-rem call kubectl delete service nginx-deployment
-
-rem call build-docker-images-gcp.bat %GOOGLE_CLOUD_PROJECT_ID%
 
 rem create deployments/services
 call kubectl apply -f config-service-kubernetes.yaml
+timeout /t 40 /nobreak > NUL
 call kubectl apply -f customer-order-service-kubernetes.yaml
 call kubectl apply -f orderplanner-service-kubernetes.yaml
 call kubectl apply -f inventory-service-kubernetes.yaml
