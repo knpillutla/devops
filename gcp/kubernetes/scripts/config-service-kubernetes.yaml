@@ -7,9 +7,10 @@ spec:
       app: config-app
       tier: backend      
   ports:
-    - port: 8888
+    - port: 443
       protocol: TCP
       nodePort: 32444
+      targetPort: 8888
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2

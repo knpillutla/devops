@@ -25,6 +25,9 @@ call kubectl delete service user
 call kubectl delete deployment config-deployment
 call kubectl delete service config
 
+call kubectl delete deployment myredis-deployment
+call kubectl delete service myredis
+
 rem display info for deployment
 call kubectl get deployments
 
