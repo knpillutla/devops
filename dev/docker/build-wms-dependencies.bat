@@ -35,3 +35,9 @@ call git clone https://github.com/knpillutla/shipping-idd.git c:\tmp\wms-builds\
 call cd c:\tmp\wms-builds\shipping-idd
 call mvn clean compile package
 POPD
+
+call rmdir /s /q c:\tmp\wms-builds\user-idd
+call git clone https://github.com/knpillutla/user-idd.git c:\tmp\wms-builds\user-idd
+call cd c:\tmp\wms-builds\user-idd
+call mvn clean compile package
+POPD
