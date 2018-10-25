@@ -19,6 +19,8 @@ call kubectl delete service event-monitor
 call kubectl delete deployment customer-order-deployment
 call kubectl delete service customer-order
 
+call kubectl delete deployment user-deployment
+call kubectl delete service user
 
 call kubectl delete deployment config-deployment
 call kubectl delete service config
