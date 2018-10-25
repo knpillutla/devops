@@ -1,22 +1,22 @@
-call kubectl delete deployment shipping-deployment
+call kubectl delete service shipping
 
-call kubectl delete deployment packing-deployment
+call kubectl delete service packing
 
-call kubectl delete deployment picking-deployment
+call kubectl delete service picking
 
-call kubectl delete deployment inventory-deployment
+call kubectl delete service inventory
 
-call kubectl delete deployment orderplanner-deployment
+call kubectl delete service orderplanner
 
-call kubectl delete deployment event-monitor-deployment
+call kubectl delete service event-monitor
 
-call kubectl delete deployment customer-order-deployment
+call kubectl delete service customer-order
 
-call kubectl delete deployment user-deployment
+call kubectl delete service user
 
-call kubectl delete deployment config-deployment
+call kubectl delete service config
 
-call kubectl delete deployment myredis-deployment
+call kubectl delete service myredis
 
 rem display info for deployment
 call kubectl get deployments
