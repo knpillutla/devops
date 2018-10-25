@@ -100,3 +100,17 @@ services:
       - KAFKA_HOST=192.168.56.1:29092
       - REDIS_HOST=192.168.56.1
       - REDIS_PORT=6379
+   user:
+    image: wms/user
+    depends_on:
+      - orderplanner
+    container_name: user
+    ports:
+      - 9017:9017
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - SPRING_PROFILES_ACTIVE=dev
+      - SERVER_PORT=9017
+      - CONFIG_SERVICE=http://192.168.56.1:8888
+      - POSTGRES_HOST=192.168.56.1:5432
+      - KAFKA_HOST=192.168.56.1:29092

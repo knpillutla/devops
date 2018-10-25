@@ -11,6 +11,7 @@ call docker stop shipping
 call docker stop inventory
 call docker stop orderplanner
 call docker stop customer-order
+call docker stop user
 call docker stop eventMonitor
 rem call docker rm kafka
 rem call docker rm zookeeper
@@ -22,8 +23,8 @@ call docker rm shipping
 call docker rm inventory
 call docker rm orderplanner
 call docker rm customer-order
+call docker rm user
 call docker rm eventMonitor
-
 rem docker-compose -f docker-compose-dev-elk.yml up --build -d
 rem docker-compose -f docker-compose-dev-postgres.yml up --build -d
 rem docker-compose -f docker-compose-dev-kafka.yml up --build -d
