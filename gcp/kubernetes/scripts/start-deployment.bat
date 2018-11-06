@@ -4,14 +4,14 @@ rem call config service deployment in initiate service to get time for it to sta
 rem call kubectl apply -f config-service-kubernetes.yaml
 rem timeout /t 40 /nobreak > NUL
 call kubectl apply -f user-service-kubernetes.yaml
-call kubectl apply -f redis-service-kubernetes.yaml
 call kubectl apply -f customer-order-service-kubernetes.yaml
 call kubectl apply -f orderplanner-service-kubernetes.yaml
 call kubectl apply -f inventory-service-kubernetes.yaml
 call kubectl apply -f picking-service-kubernetes.yaml
 call kubectl apply -f packing-service-kubernetes.yaml
 call kubectl apply -f shipping-service-kubernetes.yaml
-call kubectl apply -f event-monitor-service-kubernetes.yaml
+rem call kubectl apply -f redis-service-kubernetes.yaml
+rem call kubectl apply -f event-monitor-service-kubernetes.yaml
 
 rem call kubectl apply -f nginx-k8s-deployment.yaml
 rem display info for deployment

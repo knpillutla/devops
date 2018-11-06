@@ -1,4 +1,4 @@
-SET GOOGLE_CLOUD_PROJECT_ID=bright-seer-219503
+SET GOOGLE_CLOUD_PROJECT_ID=formal-theater-221701
  
 call docker tag wms/configservice gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
 call docker tag wms/customer-order gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/customer-order

@@ -13,6 +13,7 @@ call docker stop orderplanner
 call docker stop customer-order
 call docker stop user
 call docker stop eventMonitor
+call docker stop myredis
 rem call docker rm kafka
 rem call docker rm zookeeper
 rem call docker rm config-server
@@ -25,6 +26,7 @@ call docker rm orderplanner
 call docker rm customer-order
 call docker rm user
 call docker rm eventMonitor
+call docker rm myredis
 rem docker-compose -f docker-compose-dev-elk.yml up --build -d
 rem docker-compose -f docker-compose-dev-postgres.yml up --build -d
 rem docker-compose -f docker-compose-dev-kafka.yml up --build -d

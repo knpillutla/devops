@@ -11,6 +11,7 @@ spec:
       nodePort: 32450
       targetPort: 443
   type: LoadBalancer
+#  loadBalancerIP: 35.227.19.34
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -32,7 +33,7 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: gcr.io/bright-seer-219503/shipping
+        image: gcr.io/formal-theater-221701/shipping
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"

@@ -33,10 +33,10 @@ spec:
     spec:
       containers:
       - name: config
-        image: gcr.io/bright-seer-219503/configservice
+        image: gcr.io/formal-theater-221701/configservice
         env:
         - name: KAFKA_HOST
-          value: "35.230.182.118"
+          value: "10.150.0.2"
         - name: GIT_URL
           value: "https://github.com/knpillutla/appconfig"                    
         - name: SERVER_PORT

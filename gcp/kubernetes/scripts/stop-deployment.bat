@@ -14,7 +14,7 @@ call kubectl delete deployment customer-order-deployment
 
 call kubectl delete deployment user-deployment
 
-call kubectl delete deployment config-deployment
+rem call kubectl delete deployment config-deployment
 
 call kubectl delete deployment myredis-deployment
 

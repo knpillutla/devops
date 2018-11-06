@@ -9,6 +9,7 @@ spec:
   ports:
     - port: 8080
       nodePort: 32445
+  loadBalancerIP: 35.221.27.95
   type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
