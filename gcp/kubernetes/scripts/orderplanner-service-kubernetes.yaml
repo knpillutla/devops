@@ -41,6 +41,12 @@ spec:
           value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
         - name: SERVER_PORT
           value: "80"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 200
+          periodSeconds: 20
         ports:
         - containerPort: 80
       - name: logstash

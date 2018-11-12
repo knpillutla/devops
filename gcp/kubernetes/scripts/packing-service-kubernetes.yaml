@@ -43,7 +43,7 @@ spec:
           value: "80"
         livenessProbe:
           httpGet:
-            path: /health/
+            path: /health
             port: 80
           initialDelaySeconds: 200
           periodSeconds: 20

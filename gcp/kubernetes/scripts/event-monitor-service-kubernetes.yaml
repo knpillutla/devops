@@ -44,6 +44,12 @@ spec:
           value: "$(MYREDIS_SERVICE_HOST)"
         - name: REDIS_PORT
           value: "$(MYREDIS_SERVICE_PORT)"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 80
+          initialDelaySeconds: 200
+          periodSeconds: 20
         ports:
         - containerPort: 80
       - name: logstash
