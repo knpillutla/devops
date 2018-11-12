@@ -8,7 +8,8 @@ rem for creating elastic search logging
 call gcloud container clusters create wmscluster1 --no-enable-cloud-logging --num-nodes=3 --machine-type=n1-standard-2
 call gcloud container clusters get-credentials wmscluster1
 call gcloud compute instances list
-call kubectl create clusterrolebinding admin --clusterrole=cluster-admin --serviceaccount=default:default
+call kubectl create clusterrolebinding admin --clusterrole=cluster-admin
+rem call kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user krishna
 rem call gcloud compute addresses create customer-order-ip --region us-east4
 rem call gcloud compute addresses create customer-order-ip --region us-east4
 rem call gcloud compute addresses create customer-order-ip --region us-east4

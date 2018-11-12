@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: the3dsoft-https-nginx-ingress-controller
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-staging
+    kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: the3dsoft.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: nginx
+          servicePort: 80
+  tls:
+  - secretName: tls-staging-cert
+    hosts:
+    - the3dsoft.com          

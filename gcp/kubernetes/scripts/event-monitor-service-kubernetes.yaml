@@ -7,10 +7,10 @@ spec:
       app: event-monitor-app
       tier: backend
   ports:
-    - port: 443
+    - port: 80
       nodePort: 32451
-      targetPort: 443
-  type: LoadBalancer
+      targetPort: 80
+  type: NodePort
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -39,13 +39,13 @@ spec:
         - name: CONFIG_SERVICE
           value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
         - name: SERVER_PORT
-          value: "443"
+          value: "80"
         - name: REDIS_HOST
           value: "$(MYREDIS_SERVICE_HOST)"
         - name: REDIS_PORT
           value: "$(MYREDIS_SERVICE_PORT)"
         ports:
-        - containerPort: 443
+        - containerPort: 80
       - name: logstash
         image: docker.elastic.co/logstash/logstash:6.3.2
         env:
