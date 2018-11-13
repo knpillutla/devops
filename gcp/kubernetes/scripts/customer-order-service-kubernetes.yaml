@@ -45,8 +45,8 @@ spec:
           httpGet:
             path: /health
             port: 80
-          initialDelaySeconds: 200
-          periodSeconds: 20
+          initialDelaySeconds: 500
+          periodSeconds: 30
         ports:
         - containerPort: 80
       - name: logstash

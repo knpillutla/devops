@@ -18,6 +18,8 @@ rem call kubectl delete deployment config-deployment
 
 call kubectl delete deployment myredis-deployment
 
+call kubectl delete deployment wmsui-deployment
+
 rem display info for deployment
 call kubectl get deployments
 

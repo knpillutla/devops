@@ -5,8 +5,8 @@ call gcloud config set project %GOOGLE_CLOUD_PROJECT_ID%
 call gcloud config set compute/zone us-east4-b
 rem call gcloud container clusters create wmscluster1
 rem for creating elastic search logging
-call gcloud container clusters create wmscluster1 --no-enable-cloud-logging --num-nodes=3 --machine-type=n1-standard-2
-call gcloud container clusters get-credentials wmscluster1
+call gcloud container clusters create wmscluster100 --no-enable-cloud-logging --num-nodes=3 --machine-type=n1-standard-2
+call gcloud container clusters get-credentials wmscluster100
 call gcloud compute instances list
 call kubectl create clusterrolebinding admin --clusterrole=cluster-admin
 rem call kubectl create clusterrolebinding cluster-admin-binding --clusterrole cluster-admin --user krishna

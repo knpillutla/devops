@@ -12,6 +12,8 @@ kubectl delete deployment orderplanner-deployment
 kubectl delete service orderplanner
 kubectl delete deployment customer-order-deployment
 kubectl delete service customer-order
+kubectl delete deployment wmsui-deployment
+kubectl delete service wmsui
 kubectl delete deployment config-deployment
 kubectl delete service config
 gcloud container clusters delete wmscluster1
