@@ -23,6 +23,12 @@ spec:
       tier: backend
       track: stable
   replicas: 1 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 500
   template:
     metadata:
       labels:
@@ -46,9 +52,17 @@ spec:
           value: "$(MYREDIS_SERVICE_PORT)"
         livenessProbe:
           httpGet:
-            path: /health
+            path: /eventmonitor/v1/health
             port: 80
           initialDelaySeconds: 500
+          timeoutSeconds: 2
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /eventmonitor/v1/ready
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
           periodSeconds: 30
         ports:
         - containerPort: 80
