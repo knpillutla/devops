@@ -9,7 +9,7 @@ services:
     environment:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=gcp
-      - KAFKA_HOST=192.168.33.1:29092
+      - KAFKA_HOST=10.0.75.1:29092
       - GIT_URL=https://github.com/knpillutla/appconfig
       - SERVER_PORT=8888
     logging:
