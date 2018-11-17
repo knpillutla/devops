@@ -18,9 +18,9 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9010
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
    orderplanner:
     image: wms/orderplanner
     depends_on:
@@ -32,9 +32,9 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9011
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
    inventory:
     image: wms/inventory
     depends_on:
@@ -46,9 +46,9 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9012
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
    picking:
     image: wms/picking
     depends_on:
@@ -60,9 +60,9 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9013
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
    packing:
     image: wms/packing
     depends_on:
@@ -74,9 +74,9 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9014
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
    shipping:
     image: wms/shipping
     depends_on:
@@ -88,9 +88,9 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9015
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
  
    eventMonitor:
     image: wms/event-monitor
@@ -103,10 +103,10 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9016
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
-      - REDIS_HOST=192.168.56.1
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
+      - REDIS_HOST=10.0.75.1
       - REDIS_PORT=6379
    user:
     image: wms/user
@@ -119,6 +119,6 @@ services:
       - JAVA_OPTS=-Xmx512m
       - SPRING_PROFILES_ACTIVE=dev
       - SERVER_PORT=9017
-      - CONFIG_SERVICE=http://192.168.56.1:8888
-      - POSTGRES_HOST=192.168.56.1:5432
-      - KAFKA_HOST=192.168.56.1:29092
+      - CONFIG_SERVICE=http://10.0.75.1:8888
+      - POSTGRES_HOST=10.0.75.1:5432
+      - KAFKA_HOST=10.0.75.1:29092
