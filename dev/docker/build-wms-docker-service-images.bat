@@ -47,6 +47,11 @@ call git clone https://github.com/knpillutla/event-monitor.git c:\tmp\wms-builds
 call cd c:\tmp\wms-builds\event-monitor
 call mvn clean package docker:build 
 
+call rmdir /s /q c:\tmp\wms-builds\event-monitor-redis
+call git clone https://github.com/knpillutla/event-monitor-redis.git c:\tmp\wms-builds\event-monitor-redis
+call cd c:\tmp\wms-builds\event-monitor-redis
+call mvn clean package docker:build 
+
 call rmdir /s /q c:\tmp\wms-builds\user
 call git clone https://github.com/knpillutla/user.git c:\tmp\wms-builds\user
 call cd c:\tmp\wms-builds\user
