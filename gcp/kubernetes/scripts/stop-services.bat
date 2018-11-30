@@ -10,6 +10,8 @@ call kubectl delete service orderplanner
 
 call kubectl delete service event-monitor
 
+call kubectl delete service event-monitor-redis
+
 call kubectl delete service customer-order
 
 call kubectl delete service user

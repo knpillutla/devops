@@ -1,0 +1,75 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-monitor-redis
+spec:
+  selector:
+      app: event-monitor-redis-app
+      tier: backend
+  ports:
+    - port: 80
+      nodePort: 32451
+      targetPort: 80
+  type: NodePort
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: event-monitor-redis-deployment
+spec:
+  selector:
+    matchLabels:
+      app: event-monitor-redis-app
+      tier: backend
+      track: stable
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 500
+  template:
+    metadata:
+      labels:
+        app: event-monitor-redis-app
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: event-monitor-redis
+        image: gcr.io/bright-seer-219503/event-monitor-redis
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        - name: CONFIG_SERVICE
+          value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
+        - name: SERVER_PORT
+          value: "80"
+        - name: REDIS_HOST
+          value: "$(MYREDIS_SERVICE_HOST)"
+        - name: REDIS_PORT
+          value: "$(MYREDIS_SERVICE_PORT)"
+        livenessProbe:
+          httpGet:
+            path: /eventmonitor/v1/health
+            port: 80
+          initialDelaySeconds: 500
+          timeoutSeconds: 2
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /eventmonitor/v1/ready
+            port: 80
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+          periodSeconds: 30
+        ports:
+        - containerPort: 80
+      - name: logstash
+        image: docker.elastic.co/logstash/logstash:6.3.2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        ports:
+        - containerPort: 5000

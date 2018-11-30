@@ -12,8 +12,8 @@ call kubectl apply -f packing-service-kubernetes.yaml
 call kubectl apply -f shipping-service-kubernetes.yaml
 call kubectl apply -f redis-service-kubernetes.yaml
 call kubectl apply -f wmsui-service-kubernetes.yaml
-rem call kubectl apply -f event-monitor-service-kubernetes.yaml
-
+call kubectl apply -f event-monitor-service-kubernetes.yaml
+call kubectl apply -f event-monitor-redis-service-kubernetes.yaml
 rem call kubectl apply -f nginx-k8s-deployment.yaml
 rem display info for deployment
 rem kubectl describe deployment xxxx

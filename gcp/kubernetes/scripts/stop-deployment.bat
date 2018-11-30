@@ -10,6 +10,8 @@ call kubectl delete deployment orderplanner-deployment
 
 call kubectl delete deployment event-monitor-deployment
 
+call kubectl delete deployment event-monitor-redis-deployment
+
 call kubectl delete deployment customer-order-deployment
 
 call kubectl delete deployment user-deployment
