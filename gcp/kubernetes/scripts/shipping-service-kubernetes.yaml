@@ -51,14 +51,14 @@ spec:
           httpGet:
             path: /shipping/v1/health
             port: 80
-          initialDelaySeconds: 1000
+          initialDelaySeconds: 600
           timeoutSeconds: 2
           periodSeconds: 30
         readinessProbe:
           httpGet:
             path: /shipping/v1/ready
             port: 80
-          initialDelaySeconds: 1000
+          initialDelaySeconds: 600
           timeoutSeconds: 2
           periodSeconds: 30
         ports:

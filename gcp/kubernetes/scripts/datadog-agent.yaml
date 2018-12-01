@@ -54,7 +54,7 @@ spec:
           exec:
             command:
             - ./probe.sh
-          initialDelaySeconds: 1000
+          initialDelaySeconds: 600
           periodSeconds: 5
       volumes:
         - hostPath:
