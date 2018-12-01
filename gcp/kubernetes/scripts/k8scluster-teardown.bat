@@ -1,19 +1,19 @@
-kubectl delete deployment event-monitor-deployment
-kubectl delete service event-monitor
-kubectl delete deployment shipping-deployment
-kubectl delete service shipping
-kubectl delete deployment packing-deployment
-kubectl delete service packing
-kubectl delete deployment picking-deployment
-kubectl delete service picking
-kubectl delete deployment inventory-deployment
-kubectl delete service inventory
-kubectl delete deployment orderplanner-deployment
-kubectl delete service orderplanner
-kubectl delete deployment customer-order-deployment
-kubectl delete service customer-order
-kubectl delete deployment wmsui-deployment
-kubectl delete service wmsui
-kubectl delete deployment config-deployment
-kubectl delete service config
+rem rem kubectl delete deployment event-monitor-deployment
+rem rem kubectl delete service event-monitor
+rem kubectl delete deployment shipping-deployment
+rem kubectl delete service shipping
+rem kubectl delete deployment packing-deployment
+rem kubectl delete service packing
+rem kubectl delete deployment picking-deployment
+rem kubectl delete service picking
+rem kubectl delete deployment inventory-deployment
+rem kubectl delete service inventory
+rem kubectl delete deployment orderplanner-deployment
+rem kubectl delete service orderplanner
+rem kubectl delete deployment customer-order-deployment
+rem kubectl delete service customer-order
+rem kubectl delete deployment wmsui-deployment
+rem kubectl delete service wmsui
+rem kubectl delete deployment config-deployment
+rem kubectl delete service config
 gcloud container clusters delete wmscluster100
