@@ -15,7 +15,7 @@ the following needs to be done if starting a new cluster on a new account
 6. local consumer do not directly connect to kafka by default. Do the following to connect from external clients
 edit the server properties file
 ssh to kafka vm
-sudo vim /opt/kafka/config/server.properties
+sudo vi /opt/kafka/config/server.properties
 Uncomment the line # advertised.listeners=PLAINTEXT://:9092 and replace with advertised.listeners=PLAINTEXT://[instance_public_id_address]:9092
 restart the kafka service
 sudo systemctl restart kafka
@@ -24,7 +24,7 @@ This should let you connect from remote producers and consumers
 7. edit the default-allow-all-internal firewall rule for kafka vm and change the source ip range to 0.0.0.0/0
 8. update config service.yml to kafka internal host ip. this will use internal traffic rather than using external ephemeric ip
 9. update appconfig/gcp/application.properties and set the kafka host to internal ip
-10. update postgres url in the application.properties to the ephemeral ip
+10. update postgres url in the application.properties to the ephemeral ip and also configservice.yml as it also now connects to postgres
 11. start initiate deployment script to start config service
 12. start deployment script to start all other services
 13. note down the external ip for all the services and create dns entries in cloud dns with A records as indicated in dns.txt file.This will allow internet dns names to connect to the cluster

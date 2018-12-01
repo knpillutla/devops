@@ -1,4 +1,4 @@
-SET GOOGLE_CLOUD_PROJECT_ID=formal-theater-221701
+SET GOOGLE_CLOUD_PROJECT_ID=lustrous-bounty-224202
 
 call gcloud auth login
 call gcloud config set project %GOOGLE_CLOUD_PROJECT_ID%

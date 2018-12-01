@@ -79,5 +79,9 @@ spec:
 10. create ingress resource above 
 kubectl create -f the3dsoft-ingress.yaml
 
-11. open your https website
+11. open your https website the url address is the one from ingress controller, use external ip
+use the below to get the ingress controller external ip address. set this address in the cloud dns A name for the3dsoft.com
+kubectl --namespace kube-system get services -o wide
+
+
 	

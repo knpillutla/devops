@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: orderplanner
-        image: gcr.io/formal-theater-221701/orderplanner
+        image: gcr.io/lustrous-bounty-224202/orderplanner
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"

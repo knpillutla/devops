@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: inventory
-        image: gcr.io/formal-theater-221701/inventory
+        image: gcr.io/lustrous-bounty-224202/inventory
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
