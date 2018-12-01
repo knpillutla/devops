@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: event-monitor
-        image: gcr.io/bright-seer-219503/event-monitor
+        image: gcr.io/formal-theater-221701/event-monitor
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"

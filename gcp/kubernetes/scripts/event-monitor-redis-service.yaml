@@ -8,7 +8,7 @@ spec:
       tier: backend
   ports:
     - port: 80
-      nodePort: 32451
+      nodePort: 32461
       targetPort: 80
   type: NodePort
 ---
@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: event-monitor-redis
-        image: gcr.io/bright-seer-219503/event-monitor-redis
+        image: gcr.io/formal-theater-221701/event-monitor-redis
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
