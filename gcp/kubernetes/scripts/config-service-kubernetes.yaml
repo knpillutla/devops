@@ -11,7 +11,7 @@ spec:
       protocol: TCP
       nodePort: 32444
       targetPort: 8888
-  type: NodePort
+  type: LoadBalancer
 ---
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
@@ -36,7 +36,7 @@ spec:
         image: gcr.io/lustrous-bounty-224202/configservice
         env:
         - name: SPRING_PROFILES_ACTIVE
-          value: "gcp"
+          value: "gcp,git,db"
         - name: POSTGRES_HOST
           value: "35.237.173.156:5432"
         - name: KAFKA_HOST
