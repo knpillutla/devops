@@ -54,7 +54,7 @@ spec:
           httpGet:
             path: /eventmonitor/v1/health
             port: 80
-          initialDelaySeconds: 500
+          initialDelaySeconds: 1000
           timeoutSeconds: 2
           periodSeconds: 30
         readinessProbe:
