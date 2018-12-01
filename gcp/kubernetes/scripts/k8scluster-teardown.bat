@@ -16,4 +16,4 @@ kubectl delete deployment wmsui-deployment
 kubectl delete service wmsui
 kubectl delete deployment config-deployment
 kubectl delete service config
-gcloud container clusters delete wmscluster1
+gcloud container clusters delete wmscluster100
