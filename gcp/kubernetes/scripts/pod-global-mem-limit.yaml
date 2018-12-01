@@ -7,5 +7,5 @@ spec:
   - max:
       memory: 1Gi
     min:
-      memory: 500Mi
+      memory: 512Mi
     type: Container
