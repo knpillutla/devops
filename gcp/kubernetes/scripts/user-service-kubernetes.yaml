@@ -58,7 +58,7 @@ spec:
           httpGet:
             path: /users/v1/ready
             port: 80
-          initialDelaySeconds: 600
+          initialDelaySeconds: 120
           timeoutSeconds: 2
           periodSeconds: 30
         ports:
