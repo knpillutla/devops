@@ -35,6 +35,8 @@ spec:
       - name: config
         image: gcr.io/formal-theater-221701/configservice
         env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
         - name: KAFKA_HOST
           value: "10.150.0.2"
         - name: GIT_URL
