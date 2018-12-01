@@ -37,6 +37,8 @@ spec:
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
+        - name: POSTGRES_HOST
+          value: "35.221.55.52:5432"
         - name: KAFKA_HOST
           value: "10.150.0.2"
         - name: GIT_URL
