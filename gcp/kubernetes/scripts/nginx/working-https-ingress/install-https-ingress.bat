@@ -3,6 +3,7 @@ kubectl create clusterrolebinding tiller-binding --clusterrole=cluster-admin --s
 helm init --service-account tiller --upgrade 
 kubectl get pods --namespace kube-system
 TIMEOUT 120
+kubectl get pods --namespace kube-system
 rem helm install --name cert-manager --namespace kube-system --set ingressShim.defaultIssuerName=letsencrypt-staging --set ingressShim.defaultIssuerKind=ClusterIssuer stable/cert-manager
 rem kubectl apply -f clusterissuer-letsencrypt-staging.yml
 
