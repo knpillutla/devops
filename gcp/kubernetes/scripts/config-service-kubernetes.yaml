@@ -35,8 +35,6 @@ spec:
       - name: config
         image: gcr.io/lustrous-bounty-224202/configservice
         env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: "gcp,git,db"
         - name: POSTGRES_HOST
           value: "35.237.173.156:5432"
         - name: KAFKA_HOST
