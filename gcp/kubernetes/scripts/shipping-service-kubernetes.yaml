@@ -41,6 +41,8 @@ spec:
       - name: shipping
         image: gcr.io/lustrous-bounty-224202/shipping
         env:
+        - name: POSTGRES_HOST
+          value: "$(TIMESCALEDB_SERVICE_HOST):$(TIMESCALEDB_SERVICE_PORT)"
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
         - name: CONFIG_SERVICE
