@@ -36,14 +36,13 @@ spec:
         image: gcr.io/lustrous-bounty-224202/configservice
         env:
         - name: POSTGRES_HOST
-          value: "35.237.173.156:5432"
+          value: "$(TIMESCALEDB_SERVICE_HOST):$(TIMESCALEDB_SERVICE_PORT)"
         - name: KAFKA_HOST
           value: "10.150.0.5"
         - name: GIT_URL
           value: "https://github.com/knpillutla/appconfig"                    
         - name: SERVER_PORT
           value: "8888"                  
-        
         ports:
         - name: http
           containerPort: 443
