@@ -2,7 +2,7 @@
 version: '3.0'
 services:
   mypostgres:
-    image: timescale/timescaledb
+    image: timescale/timescaledb:latest
     container_name: timescaledb
     restart: always
     ports:

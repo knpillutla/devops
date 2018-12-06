@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: timescaledb
+  labels:
+    app: timescaledb-app
+spec:
+  type: LoadBalancer
+  ports:
+   - port: 5432
+  selector:
+   app: timescaledb-app
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: timescaledb-config
+  labels:
+    app: timescaledb-app
+data:
+  POSTGRES_DB: postgres
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: timescaledb-claim
+  labels:
+    app: timescaledb-app
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: timescaledb-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: timescaledb-app
+    spec:
+      containers:
+        - name: timescaledb
+          image: timescale/timescaledb:latest
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: timescaledb-config
+          volumeMounts:
+            - mountPath: /var/lib/test/data/test
+              name: timescaledbvolume
+      volumes:
+        - name: timescaledbvolume
+          persistentVolumeClaim:
+            claimName: timescaledb-claim

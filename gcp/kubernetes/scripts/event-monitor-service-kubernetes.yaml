@@ -46,10 +46,6 @@ spec:
           value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
         - name: SERVER_PORT
           value: "80"
-        - name: REDIS_HOST
-          value: "$(MYREDIS_SERVICE_HOST)"
-        - name: REDIS_PORT
-          value: "$(MYREDIS_SERVICE_PORT)"
         livenessProbe:
           httpGet:
             path: /eventmonitor/v1/health

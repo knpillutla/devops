@@ -12,5 +12,6 @@ services:
       - KAFKA_HOST=10.0.75.1:29092
       - GIT_URL=https://github.com/knpillutla/appconfig
       - SERVER_PORT=8888
+      - POSTGRES_HOST=10.0.75.1
     logging:
         driver: json-file
