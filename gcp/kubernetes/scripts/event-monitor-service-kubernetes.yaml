@@ -42,6 +42,12 @@ spec:
         env:
         - name: POSTGRES_HOST
           value: "$(TIMESCALEDB_SERVICE_HOST):$(TIMESCALEDB_SERVICE_PORT)"
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PWD
+          value: "postgres"
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
         - name: CONFIG_SERVICE

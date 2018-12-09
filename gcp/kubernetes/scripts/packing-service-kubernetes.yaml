@@ -42,7 +42,13 @@ spec:
         image: gcr.io/lustrous-bounty-224202/packing
         env:
         - name: POSTGRES_HOST
-          value: "$(TIMESCALEDB_SERVICE_HOST):$(TIMESCALEDB_SERVICE_PORT)"
+          value: "35.237.173.156"
+        - name: POSTGRES_DB
+          value: "postgres"
+        - name: POSTGRES_USER
+          value: "postgres"
+        - name: POSTGRES_PWD
+          value: "postgres"
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
         - name: CONFIG_SERVICE

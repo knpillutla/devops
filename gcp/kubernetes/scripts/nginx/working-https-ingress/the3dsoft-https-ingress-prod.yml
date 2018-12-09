@@ -47,7 +47,7 @@ spec:
         backend:
           serviceName: event-monitor-redis
           servicePort: 80
-      - path: /api/v1/eventmonitors/
+      - path: /api/*
         backend:
           serviceName: event-monitor
           servicePort: 80
