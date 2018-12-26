@@ -1,3 +1,4 @@
+rem last cluster started on 12/26/2018 after chrismas day(12/25) at 12:10 a.m. check how long will the cluster run before running out of free credit
 SET GOOGLE_CLOUD_PROJECT_ID=data-terminus-226700
 
 call gcloud auth login
