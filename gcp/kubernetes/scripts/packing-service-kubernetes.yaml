@@ -39,10 +39,10 @@ spec:
     spec:
       containers:
       - name: packing
-        image: gcr.io/lustrous-bounty-224202/packing
+        image: gcr.io/data-terminus-226700/packing
         env:
         - name: POSTGRES_HOST
-          value: "35.237.173.156"
+          value: "35.237.180.248"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER

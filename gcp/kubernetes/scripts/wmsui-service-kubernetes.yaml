@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
       - name: wmsui
-        image: gcr.io/lustrous-bounty-224202/wmsui
+        image: gcr.io/data-terminus-226700/wmsui
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"

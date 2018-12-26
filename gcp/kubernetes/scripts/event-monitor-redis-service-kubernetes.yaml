@@ -38,10 +38,10 @@ spec:
     spec:
       containers:
       - name: event-monitor-redis
-        image: gcr.io/lustrous-bounty-224202/event-monitor-redis
+        image: gcr.io/data-terminus-226700/event-monitor-redis
         env:
         - name: POSTGRES_HOST
-          value: "35.237.173.156"
+          value: "35.237.180.248"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER

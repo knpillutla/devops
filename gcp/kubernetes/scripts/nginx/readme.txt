@@ -84,4 +84,5 @@ use the below to get the ingress controller external ip address. set this addres
 kubectl --namespace kube-system get services -o wide
 
 
-	
+12. execute the below to check server is registered with letsencrypt
+kubectl describe ClusterIssuer letsencrypt-prod	

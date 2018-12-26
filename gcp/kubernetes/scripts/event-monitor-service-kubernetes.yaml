@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: event-monitor
-        image: gcr.io/lustrous-bounty-224202/event-monitor
+        image: gcr.io/data-terminus-226700/event-monitor
         env:
         - name: POSTGRES_HOST
           value: "$(TIMESCALEDB_SERVICE_HOST):$(TIMESCALEDB_SERVICE_PORT)"

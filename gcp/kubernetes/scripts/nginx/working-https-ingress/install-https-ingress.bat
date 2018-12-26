@@ -24,3 +24,5 @@ TIMEOUT 10
 kubectl apply -f the3dsoft-https-ingress-prod.yml
 TIMEOUT 10
 kubectl --namespace kube-system get services -o wide
+TIMEOUT 10
+kubectl describe ClusterIssuer letsencrypt-prod

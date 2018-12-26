@@ -33,10 +33,10 @@ spec:
     spec:
       containers:
       - name: config
-        image: gcr.io/lustrous-bounty-224202/configservice
+        image: gcr.io/data-terminus-226700/configservice
         env:
         - name: POSTGRES_HOST
-          value: "35.237.173.156"
+          value: "35.237.180.248"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER
@@ -44,7 +44,7 @@ spec:
         - name: POSTGRES_PWD
           value: "postgres"
         - name: KAFKA_HOST
-          value: "10.150.0.5"
+          value: "10.150.0.2"
         - name: GIT_URL
           value: "https://github.com/knpillutla/appconfig"                    
         - name: SERVER_PORT
