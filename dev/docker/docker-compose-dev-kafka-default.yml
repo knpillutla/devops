@@ -1,0 +1,29 @@
+##Self Dockerimage on latest build##
+version: '3.0'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.0.0
+    container_name: zookeeper
+    restart: always
+    ports:
+      - 32181:32181
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - ZOOKEEPER_CLIENT_PORT=32181
+      - ZOOKEEPER_TICK_TIME=2000
+
+      
+  kafka:
+    depends_on:
+      - zookeeper  
+    image: confluentinc/cp-kafka:5.0.0
+    container_name: kafka
+    restart: always
+    ports:
+      - 9092:9092
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - KAFKA_ZOOKEEPER_CONNECT=10.0.75.1:32181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://10.0.75.1:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+#      - KAFKA_LOG_MESSAGE_FORMAT_VERSION=0.10.1

@@ -1,0 +1,70 @@
+##Self Dockerimage on latest build##
+version: '3.0'
+services:
+  customerorderdb:
+    image: postgres
+    container_name: customerorderdb
+    restart: always
+    ports:
+      - 5430:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=customerorder
+      - POSTGRES_USER=customerorder
+      - POSTGRES_DB=customerorder
+  orderplannerdb:
+    image: postgres
+    container_name: orderplannerdb
+    restart: always
+    ports:
+      - 5431:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=orderplanner
+      - POSTGRES_USER=orderplanner
+      - POSTGRES_DB=orderplanner
+  shipmentdb:
+    image: postgres
+    container_name: shipmentdb
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=shipment
+      - POSTGRES_USER=shipment
+      - POSTGRES_DB=shipment
+  inventorydb:
+    image: postgres
+    container_name: inventorydb
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=inventory
+      - POSTGRES_USER=inventory
+      - POSTGRES_DB=inventory      
+  pickdb:
+    image: postgres
+    container_name: pickdb
+    restart: always
+    ports:
+      - 5434:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=pick
+      - POSTGRES_USER=pick
+      - POSTGRES_DB=pick      
+  packdb:
+    image: postgres
+    container_name: packdb
+    restart: always
+    ports:
+      - 5435:5432
+    environment:
+      - JAVA_OPTS=-Xmx512m
+      - POSTGRES_PASSWORD=pack
+      - POSTGRES_USER=pack
+      - POSTGRES_DB=pack      
+      
