@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhipster-alerter
+spec:
+  selector:
+    app: jhipster-alerter-app
+  ports:
+  - name: firstport
+    protocol: "TCP"
+    port: 80
+    targetPort: 5601
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jhipster-alerter
+spec:
+  selector:
+    matchLabels:
+      app: jhipster-alerter-app
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: jhipster-alerter-app
+    spec:
+      containers:
+      - name: jhipster-alerter
+        image: gcr.io/sanguine-torus-228819/jhipster-alerter:latest
+        env:
+        - name: ES_HOST
+          value: "$(JHIPSTER_ELASTICSEARCH_SERVICE_HOST)"
+        - name: ES_PORT
+          value: "$(JHIPSTER_ELASTICSEARCH_SERVICE_PORT)"
+        - name: UNIT_COUNT
+          value: "14"
+        - name: UNIT
+          value: "days"
+          #value: ""http://$(JHIPSTER_CONSOLE_SERVICE_HOST):$(JHIPSTER_CONSOLE_SERVICE_PORT)""
+        ports:
+        - containerPort: 5601
+        volumeMounts:
+        - name: wms-config-volume
+          mountPath: /etc/config
+        - name: jhipster-alerter-rules
+          mountPath: ../alerts/rules/
+        - name: jhipster-alerter-config
+          mountPath: ../jhipster-alerter/config.yaml
+      # Load the configuration files for nginx
+      volumes:
+        - name: wms-config-volume
+          configMap:
+            name: wms-config
+        - name: jhipster-alerter-rules
+          hostPath:
+            path: /opt/elastalert/rules/
+        - name: jhipster-alerter-config
+          hostPath:
+            path: /opt/elastalert/config.yaml

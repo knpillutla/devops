@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wms-config
+data:
+  SPRING_PROFILES_ACTIVE: "prodgcp,swagger,zipkin"
+  SECURITY_OAUTH2_CLIENT_CLIENT_ID: "internal"
+  SECURITY_OAUTH2_CLIENT_CLIENT_SECRET: "internal"
+  SECURITY_OAUTH2_RESOURCE_USER_INFO_URI: "http://keycloak:9080/auth/realms/jhipster/protocol/openid-connect/userinfo"
+  JHIPSTER_SLEEP: "10"
+  SERVER_PORT: "5555"
+  CONFIG_DB_DB: "config"
+  CONFIG_DB_USER: "config"
+  CONFIG_DB_PWD: "config"  
+  CUSTOMERORDER_DB_DB: "customerorder"
+  CUSTOMERORDER_DB_USER: "customerorder"
+  CUSTOMERORDER_DB_PWD: "customerorder"

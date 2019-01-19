@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: customerorder
+spec:
+  selector:
+    app: customerorder-app
+  ports:
+  - protocol: "TCP"
+    port: 5555
+    targetPort: 5555
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: customerorder-deployment
+spec:
+  template:
+    metadata:
+      labels:
+        app: customerorder-app
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 60
+    spec:
+      containers:
+      - name: customerorder
+        image: gcr.io/sanguine-torus-228819/customerorder
+        envFrom:
+        - configMapRef:
+            name: wms-config
+        env:
+        - name: POSTGRES_HOST
+          value: "$(CUSTOMERORDER_DB_SERVICE_HOST):$(CUSTOMERORDER_DB_SERVICE_PORT)"
+        - name: POSTGRES_DB
+          value: "$(CUSTOMERORDER_DB_DB)"
+        - name: POSTGRES_USER
+          value: "$(CUSTOMERORDER_DB_USER)"
+        - name: POSTGRES_PWD
+          value: "$(CUSTOMERORDER_DB_PWD)"
+        - name: CONFIG_SERVICE
+          value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
+        - name: KAFKA_HOST
+          value: "$(KAFKA_CLUSTER_SERVICE_HOST):$(KAFKA_CLUSTER_SERVICE_PORT_KAFKA1PORT)"
+          #value: "http://$(JHIPSTER_ELASTICSEARCH_SERVICE_HOST):$(JHIPSTER_ELASTICSEARCH_SERVICE_PORT)"
+        livenessProbe:
+          httpGet:
+            path: /api/health
+            port: 5555
+          initialDelaySeconds: 600
+          timeoutSeconds: 2
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /api/ready
+            port: 5555
+          initialDelaySeconds: 120
+          timeoutSeconds: 2
+          periodSeconds: 30
+        ports:
+        - containerPort: 5555
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5555
+      - name: logstash
+        image: docker.elastic.co/logstash/logstash:6.3.2
+        ports:
+        - containerPort: 5000

@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+      app: postgres-app
+      tier: backend
+  ports:
+  - name: postgrescontainer
+    protocol: "TCP"
+    port: 5432
+    targetPort: 5432
+  type: LoadBalancer
+#  loadBalancerIP: 35.221.40.3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgres-app
+      tier: backend
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: postgres-app
+        tier: backend
+    spec:
+      containers:
+      - image: postgres:11.1
+        name: postgres
+        env:
+        - name: "POSTGRES_DB"
+          value: "postgres"
+        - name: "POSTGRES_PASSWORD"
+          value: "postgres"
+        - name: "POSTGRES_USER"
+          value: "postgres"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgresdbvolume
+          mountPath: /var/lib/postgresql/data
+          subPath: data
+      volumes:
+        - name: postgresdbvolume
+          persistentVolumeClaim:
+            claimName: postgresdbclaim
+---
+# Request a persistent volume from the cluster using a Persistent Volume Claim.
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: postgresdbclaim
+  annotations:
+    volume.alpha.kubernetes.io/storage-class: default
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi

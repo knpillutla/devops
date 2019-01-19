@@ -55,6 +55,10 @@ spec:
         backend:
           serviceName: event-monitor
           servicePort: 80
+      - path: /kafka
+        backend:
+          serviceName: kafka-cluster
+          servicePort: 9092
   tls:
   - secretName: tls-prod-cert
     hosts:

@@ -7,8 +7,11 @@ spec:
   - host: the3dsoft.com
     http:
       paths:
-      # The * is needed so that all traffic gets redirected to nginx
-      - path: /*
+      - path: /test/
         backend:
           serviceName: nginx
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: wmsui
           servicePort: 80

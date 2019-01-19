@@ -39,10 +39,10 @@ spec:
     spec:
       containers:
       - name: orderplanner
-        image: gcr.io/data-terminus-226700/orderplanner
+        image: gcr.io/sanguine-torus-228819/orderplanner
         env:
         - name: POSTGRES_HOST
-          value: "35.237.180.248"
+          value: "10.35.249.53"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER

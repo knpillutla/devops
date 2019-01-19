@@ -39,12 +39,12 @@ spec:
     spec:
       containers:
       - name: customer-order
-        image: gcr.io/data-terminus-226700/customer-order
+        image: gcr.io/sanguine-torus-228819/customer-order
         env:
         - name: SPRING_PROFILES_ACTIVE
           value: "gcp"
         - name: POSTGRES_HOST
-          value: "35.237.180.248"
+          value: "10.35.249.53"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER

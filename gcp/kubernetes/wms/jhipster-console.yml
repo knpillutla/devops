@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhipster-console
+spec:
+  selector:
+    app: jhipster-console-app
+  ports:
+  - name: firstport
+    protocol: "TCP"
+    port: 5601
+    targetPort: 5601
+  type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jhipster-console-deployment
+spec:
+  selector:
+    matchLabels:
+      app: jhipster-console-app
+      tier: backend
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: jhipster-console-app
+        tier: backend
+    spec:      
+      containers:
+      - name: jhipster-console
+        image: gcr.io/sanguine-torus-228819/jhipster-console:latest
+        env:
+        - name: ELASTICSEARCH_URL
+          value: "http://$(JHIPSTER_ELASTICSEARCH_SERVICE_HOST):$(JHIPSTER_ELASTICSEARCH_SERVICE_PORT)"
+          #value: "http://$(JHIPSTER_ELASTICSEARCH_SERVICE_HOST):$(JHIPSTER_ELASTICSEARCH_SERVICE_PORT)"
+        ports:
+        - containerPort: 5601
+        volumeMounts:
+        - name: wms-config-volume
+          mountPath: /etc/config
+      # Load the configuration files for nginx
+      volumes:
+        - name: wms-config-volume
+          configMap:
+            name: wms-config

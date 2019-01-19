@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhipster-elasticsearch
+spec:
+  selector:
+    app: jhipster-elasticsearch-app
+  ports:
+  - name: firstport
+    protocol: "TCP"
+    port: 9200
+    targetPort: 9200
+  - name: secondport
+    protocol: "TCP"
+    port: 9300
+    targetPort: 9300
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jhipster-elasticsearch
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jhipster-elasticsearch-deployment
+spec:
+  selector:
+    matchLabels:
+      app: jhipster-elasticsearch-app
+      tier: backend
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: jhipster-elasticsearch-app
+        tier: backend
+    spec:
+      containers:
+      - name: jhipster-elasticsearch
+        image: gcr.io/sanguine-torus-228819/jhipster-elasticsearch:latest
+        ports:
+        - containerPort: 9200
+        - containerPort: 9300
+        volumeMounts:
+        - name: wms-config-volume
+          mountPath: /etc/config
+        - name: log-file-path
+          mountPath: log-data
+       # HTTP Health Check
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 9300
+          initialDelaySeconds: 600
+          timeoutSeconds: 2
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 9300
+          initialDelaySeconds: 120
+          timeoutSeconds: 2
+          periodSeconds: 30
+      # Load the configuration files for nginx
+      volumes:
+        - name: wms-config-volume
+          configMap:
+            name: wms-config
+        - name: log-file-path
+          hostPath:
+            path: /var/log/elasticsearch/data

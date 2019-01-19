@@ -33,10 +33,10 @@ spec:
     spec:
       containers:
       - name: config
-        image: gcr.io/data-terminus-226700/configservice
+        image: gcr.io/sanguine-torus-228819/configservice
         env:
         - name: POSTGRES_HOST
-          value: "35.237.180.248"
+          value: "10.35.249.53"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER
@@ -44,7 +44,7 @@ spec:
         - name: POSTGRES_PWD
           value: "postgres"
         - name: KAFKA_HOST
-          value: "10.150.0.2"
+          value: "$(KAFKA_CLUSTER_SERVICE_HOST):$(KAFKA_CLUSTER_SERVICE_PORT_KAFKA1PORT)"
         - name: GIT_URL
           value: "https://github.com/knpillutla/appconfig"                    
         - name: SERVER_PORT

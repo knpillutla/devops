@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jhipster-import-dashboards
+spec:
+  selector:
+    app: jhipster-import-dashboards-app
+  ports:
+  - name: firstport
+    protocol: "TCP"
+    port: 80
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jhipster-import-dashboards-deployment
+spec:
+  selector:
+    matchLabels:
+      app: jhipster-import-dashboards-app
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: jhipster-import-dashboards-app
+    spec:
+      containers:
+      - name: jhipster-import-dashboards
+        image: gcr.io/sanguine-torus-228819/jhipster-import-dashboards:latest
+        env:
+        - name: ELASTICSEARCH_URL
+          value: "http://$(JHIPSTER_ELASTICSEARCH_SERVICE_HOST):$(JHIPSTER_ELASTICSEARCH_SERVICE_PORT)"
+        - name: KIBANA_URL
+          value: "http://$(JHIPSTER_CONSOLE_SERVICE_HOST):$(JHIPSTER_CONSOLE_SERVICE_PORT)"
+          #value: ""http://$(JHIPSTER_CONSOLE_SERVICE_HOST):$(JHIPSTER_CONSOLE_SERVICE_PORT)""
+        volumeMounts:
+        - name: wms-config-volume
+          mountPath: /etc/config
+      # Load the configuration files for nginx
+      volumes:
+        - name: wms-config-volume
+          configMap:
+            name: wms-config

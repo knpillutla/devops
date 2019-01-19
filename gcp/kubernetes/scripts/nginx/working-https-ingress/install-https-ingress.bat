@@ -16,7 +16,7 @@ TIMEOUT 10
 kubectl apply -f nginx-service.yml
 TIMEOUT 10
 rem kubectl apply -f the3dsoft-ingress.yml
-helm install stable/nginx-ingress --namespace kube-system
+helm install --name myingresscontroller stable/nginx-ingress --namespace kube-system
 TIMEOUT 10
 rem verify ingress controller
 kubectl --namespace kube-system get services -o wide 

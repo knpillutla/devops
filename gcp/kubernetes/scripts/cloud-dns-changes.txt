@@ -1,0 +1,26 @@
+get static ip for ingress controller
+kubectl --namespace kube-system get services -o wide
+kubectl get ingress
+
+kubectl get cert
+kubectl get clusterissuer
+
+
+main-zone
+ dnsname: the3dsoft.com
+ 
+the3dsoft.com   NS list of name servers which will auto populate(list of 4)
+the3dsoft.com   SOA autopopulate
+the3dsoft.com.  A  35.245.101.144(ingress controller ip)
+www.the3dsoft.com.	 CNAME the3dsoft.com. (create dns name as www and the cononical name as the3dsoft.com)
+
+ONCE THE ABOVE ARE SETUP ON 3DSOFT3@GMAIL.COM ACCOUNT, LOGIN TO GOOGLE DOMAINS USING ADMIN@3DSOFT.COM and update the domain name servers to the above
+
+ns-cloud-e1.googledomains.com.
+ns-cloud-e2.googledomains.com.
+ns-cloud-e3.googledomains.com.
+ns-cloud-e4.googledomains.com
+
+google domains are on knpillutla@gmail.com account
+
+    

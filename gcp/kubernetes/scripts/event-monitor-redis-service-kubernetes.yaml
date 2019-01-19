@@ -38,10 +38,10 @@ spec:
     spec:
       containers:
       - name: event-monitor-redis
-        image: gcr.io/data-terminus-226700/event-monitor-redis
+        image: gcr.io/sanguine-torus-228819/event-monitor-redis
         env:
         - name: POSTGRES_HOST
-          value: "35.237.180.248"
+          value: "10.35.249.53"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER

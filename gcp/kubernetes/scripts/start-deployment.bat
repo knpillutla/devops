@@ -16,15 +16,15 @@ TIMEOUT 120
 call kubectl apply -f packing-service-kubernetes.yaml
 TIMEOUT 120
 call kubectl apply -f shipping-service-kubernetes.yaml
-TIMEOUT 120
-call kubectl apply -f redis-service-kubernetes.yaml
+rem TIMEOUT 120
+rem call kubectl apply -f redis-service-kubernetes.yaml
 TIMEOUT 120
 call kubectl apply -f wmsui-service-kubernetes.yaml
-TIMEOUT 120
-call kubectl apply -f event-monitor-service-kubernetes.yaml
-TIMEOUT 120
-call kubectl apply -f event-monitor-redis-service-kubernetes.yaml
-TIMEOUT 120
+rem TIMEOUT 120
+rem call kubectl apply -f event-monitor-service-kubernetes.yaml
+rem TIMEOUT 120
+rem call kubectl apply -f event-monitor-redis-service-kubernetes.yaml
+rem TIMEOUT 120
 rem call kubectl apply -f nginx-k8s-deployment.yaml
 rem display info for deployment
 rem kubectl describe deployment xxxx

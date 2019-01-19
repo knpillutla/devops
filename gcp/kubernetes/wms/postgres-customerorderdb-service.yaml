@@ -1,0 +1,68 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: customerorder-db
+spec:
+  selector:
+      app: customerorder-db-app
+      tier: backend
+  ports:
+  - name: customerorder-db
+    protocol: "TCP"
+    port: 5433
+    targetPort: 5432
+  type: NodePort
+#  loadBalancerIP: 35.221.40.3
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: customerorder-db-deployment
+spec:
+  selector:
+    matchLabels:
+      app: customerorder-db-app
+      tier: backend
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: customerorder-db-app
+        tier: backend
+    spec:
+      containers:
+      - image: postgres:11.1
+        name: postgres
+        envFrom:
+        - configMapRef:
+            name: wms-config
+        env:
+        - name: "POSTGRES_DB"
+          value: "$(CUSTOMERORDER_DB_DB)"
+        - name: "POSTGRES_PASSWORD"
+          value: "$(CUSTOMERORDER_DB_PWD)"
+        - name: "POSTGRES_USER"
+          value: "$(CUSTOMERORDER_DB_USER)"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: customerorderdbvolmount
+          mountPath: /var/lib/customerorderdb/data
+          subPath: customerorderdbvolmount
+      volumes:
+        - name: customerorderdbvolmount
+          persistentVolumeClaim:
+            claimName: customerorderdb-vol-claim
+---
+# Request a persistent volume from the cluster using a Persistent Volume Claim.
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: customerorderdb-vol-claim
+  annotations:
+    volume.alpha.kubernetes.io/storage-class: default
+spec:
+  accessModes: [ReadWriteOnce]
+  resources:
+    requests:
+      storage: 5Gi

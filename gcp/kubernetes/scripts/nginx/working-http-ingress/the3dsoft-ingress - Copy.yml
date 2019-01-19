@@ -1,0 +1,57 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "the3dsoft-ingress"
+spec:
+  rules:
+  - host: the3dsoft.com
+    http:
+      paths:
+      - path: /test/
+        backend:
+          serviceName: nginx
+          servicePort: 80
+      - path: /
+        backend:
+          serviceName: wmsui
+          servicePort: 80
+      - path: /users/
+        backend:
+          serviceName: user
+          servicePort: 80
+      - path: /customer-orders/
+        backend:
+          serviceName: customer-order
+          servicePort: 80
+      - path: /orderplanner/
+        backend:
+          serviceName: orderplanner
+          servicePort: 80
+      - path: /inventory/
+        backend:
+          serviceName: inventory
+          servicePort: 80
+      - path: /picking/
+        backend:
+          serviceName: picking
+          servicePort: 80
+      - path: /packing/
+        backend:
+          serviceName: packing
+          servicePort: 80
+      - path: /shipping/
+        backend:
+          serviceName: shipping
+          servicePort: 80
+      - path: /eventmonitor/
+        backend:
+          serviceName: event-monitor-redis
+          servicePort: 80
+      - path: /api/
+        backend:
+          serviceName: config
+          servicePort: 8888
+      - path: /event/event-monitor/
+        backend:
+          serviceName: event-monitor
+          servicePort: 80

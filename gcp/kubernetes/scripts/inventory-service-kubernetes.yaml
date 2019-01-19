@@ -39,10 +39,10 @@ spec:
     spec:
       containers:
       - name: inventory
-        image: gcr.io/data-terminus-226700/inventory
+        image: gcr.io/sanguine-torus-228819/inventory
         env:
         - name: POSTGRES_HOST
-          value: "35.237.180.248"
+          value: "10.35.249.53"
         - name: POSTGRES_DB
           value: "postgres"
         - name: POSTGRES_USER
