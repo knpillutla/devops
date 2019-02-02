@@ -4,31 +4,19 @@ rem call config service deployment in initiate service to get time for it to sta
 rem call kubectl apply -f config-service-kubernetes.yaml
 rem timeout /t 40 /nobreak > NUL
 
-call kubectl apply -f service-user.yaml
-TIMEOUT 120
-call kubectl apply -f service-customerorder.yml
-TIMEOUT 120
-call kubectl apply -f service-inventory.yml
-TIMEOUT 120
-call kubectl apply -f service-orderplanner.yml
-TIMEOUT 120
-call kubectl apply -f service-pack.yml
-TIMEOUT 120
-call kubectl apply -f service-pick.yml
-TIMEOUT 120
-call kubectl apply -f service-print.yml
-TIMEOUT 120
-call kubectl apply -f service-shipengine.yml
-TIMEOUT 120
-call kubectl apply -f service-shipment.yml
-TIMEOUT 120
-call kubectl apply -f service-workflow.yml
-TIMEOUT 120
-call kubectl apply -f service-wmsui.yaml
-TIMEOUT 120
-call kubectl apply -f service-wmse2e.yml
-rem TIMEOUT 120
-rem call kubectl apply -f service-wmse2e.yamll
+call deploy-configservice.bat
+call deploy-user.bat
+call deploy-wmsui.bat
+call deploy-customerorder.bat
+call deploy-orderplanner.bat
+call deploy-inventory.bat
+call deploy-shipment.bat
+call deploy-print.bat
+call deploy-pick.bat
+call deploy-pack.bat
+call deploy-shipengine.bat
+call deploy-workflow.bat
+
 
 rem display info for deployment
 call kubectl get deployments
@@ -48,7 +36,8 @@ rem info on kubernetes cluster
 call kubectl cluster-info
 
 
-rem deleting deployment and services
+rem deleting deployment and servicescall deploy-wmse2e.bat
+
 rem kubectl delete deployment nginx-deployment
 rem kubectl delete service nginx-service
 

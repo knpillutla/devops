@@ -1,6 +1,5 @@
-rem call kubectl apply -f pod-global-mem-limit.yaml
-rem create deployments/services
-
-
+call kubectl delete deployment config-deployment
+call docker tag wms/configservice gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
 call kubectl apply -f service-config.yaml
-kubectl get pods
+TIMEOUT 80
