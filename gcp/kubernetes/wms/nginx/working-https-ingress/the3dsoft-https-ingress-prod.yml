@@ -55,6 +55,42 @@ spec:
         backend:
           serviceName: event-monitor
           servicePort: 80
+      - path: /customerorder/
+        backend:
+          serviceName: customerorder
+          servicePort: 80
+      - path: /inventory/
+        backend:
+          serviceName: inventory
+          servicePort: 80
+      - path: /pick/
+        backend:
+          serviceName: pick
+          servicePort: 80
+      - path: /pack/
+        backend:
+          serviceName: pack
+          servicePort: 80
+      - path: /shipment/
+        backend:
+          serviceName: shipment
+          servicePort: 80
+      - path: /shipengine/
+        backend:
+          serviceName: shipengine
+          servicePort: 80
+      - path: /print/
+        backend:
+          serviceName: print
+          servicePort: 80
+      - path: /workflow/
+        backend:
+          serviceName: workflow
+          servicePort: 80
+      - path: /wmse2e/
+        backend:
+          serviceName: wmse2e
+          servicePort: 80
   tls:
   - secretName: tls-prod-cert
     hosts:

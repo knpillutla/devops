@@ -4,8 +4,27 @@ rem call config service deployment in initiate service to get time for it to sta
 rem call kubectl apply -f config-service-kubernetes.yaml
 rem timeout /t 40 /nobreak > NUL
 
-call kubectl apply -f customerorder-service.yml
+call kubectl apply -f service-customerorder.yml
 TIMEOUT 120
+call kubectl apply -f service-inventory.yml
+TIMEOUT 120
+call kubectl apply -f service-orderplanner.yml
+TIMEOUT 120
+call kubectl apply -f service-pack.yml
+TIMEOUT 120
+call kubectl apply -f service-pick.yml
+TIMEOUT 120
+call kubectl apply -f service-print.yml
+TIMEOUT 120
+call kubectl apply -f service-shipengine.yml
+TIMEOUT 120
+call kubectl apply -f service-shipment.yml
+TIMEOUT 120
+call kubectl apply -f service-workflow.yml
+TIMEOUT 120
+call kubectl apply -f service-wmsui.yaml
+rem TIMEOUT 120
+rem call kubectl apply -f service-wmse2e.yamll
 
 rem display info for deployment
 call kubectl get deployments

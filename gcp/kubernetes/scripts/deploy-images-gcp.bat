@@ -11,6 +11,7 @@ call docker tag wms/shipping gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipping
 call docker tag wms/event-monitor gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/event-monitor
 call docker tag wms/event-monitor-redis gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/event-monitor-redis
 call docker tag wms/wmsui gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmsui
+rem call docker tag wms/wmsui gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmse2e
 
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/user
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/configservice
@@ -23,3 +24,4 @@ call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipping
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/event-monitor
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/event-monitor-redis
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmsui
+rem call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmse2e
