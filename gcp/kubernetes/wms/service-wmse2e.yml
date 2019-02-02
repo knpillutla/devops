@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: wmse2e
-        image: gcr.io/sanguine-torus-228819/wmse2e
+        image: gcr.io/sanguine-torus-228819/wms-e2e
         envFrom:
         - configMapRef:
             name: wms-config
@@ -54,7 +54,7 @@ spec:
         - name: PICK_SERVICE_URL
           value: "http://$(PICK_SERVICE_HOST):$(PICK_SERVICE_PORT)"
         - name: PACK_SERVICE_URL
-          value: "http://$(PICK_SERVICE_HOST):$(PICK_SERVICE_PORT)"
+          value: "http://$(PACK_SERVICE_HOST):$(PACK_SERVICE_PORT)"
         livenessProbe:
           httpGet:
             path: /wmse2e/api/health

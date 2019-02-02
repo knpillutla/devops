@@ -19,7 +19,7 @@ call docker tag threedsoft/shipengine gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipengin
 call docker tag threedsoft/print gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/print
 call docker tag threedsoft/workflow gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/workflow
 call docker tag wms/wmsui gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmsui
-call docker tag wms/wmse2e gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmse2e
+call docker tag threedsoft/wms-e2e gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wms-e2e
 rem call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/jhipster-elasticsearch
 rem call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/jhipster-logstash
 rem call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/jhipster-console
@@ -40,6 +40,6 @@ call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/shipengine
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/print
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/workflow
 call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmsui
-call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wmse2e
+call docker push gcr.io/%GOOGLE_CLOUD_PROJECT_ID%/wms-e2e
 call docker tag threedsoft/customerorder gcr.io/sanguine-torus-228819/customerorder
 call docker push gcr.io/sanguine-torus-228819/customerorder

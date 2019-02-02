@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: config
+spec:
+  selector:
+      app: config-app
+      tier: backend      
+  ports:
+    - port: 8888
+      protocol: TCP
+      nodePort: 32444
+      targetPort: 8888
+  type: LoadBalancer
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: config-deployment
+spec:
+  selector:
+    matchLabels:
+      app: config-app
+      tier: backend
+      track: stable
+  replicas: 1 # tells deployment to run 4 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: config-app
+        tier: backend
+        track: stable
+    spec:
+      containers:
+      - name: config
+        image: gcr.io/sanguine-torus-228819/configservice
+        env:
+        - name: POSTGRES_HOST
+          value: "$(CONFIG_DB_SERVICE_HOST):$(CONFIG_DB_SERVICE_PORT)"
+        - name: POSTGRES_DB
+          value: "$(CONFIG_DB_DB)"
+        - name: POSTGRES_USER
+          value: "$(CONFIG_DB_USER)"
+        - name: POSTGRES_PWD
+          value: "$(CONFIG_DB_PWD)"
+        - name: KAFKA_HOST
+          value: "$(KAFKA_CLUSTER_SERVICE_HOST):$(KAFKA_CLUSTER_SERVICE_PORT_KAFKA1PORT)"
+        - name: GIT_URL
+          value: "https://github.com/knpillutla/appconfig"                    
+        - name: SERVER_PORT
+          value: "8888"                  
+        ports:
+        - name: http
+          containerPort: 443
+      - name: logstash
+        image: docker.elastic.co/logstash/logstash:6.3.2
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "gcp"
+        - name: CONFIG_SERVICE
+          value: http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)
+        ports:
+        - containerPort: 5000
