@@ -23,6 +23,8 @@ TIMEOUT 120
 call kubectl apply -f service-workflow.yml
 TIMEOUT 120
 call kubectl apply -f service-wmsui.yaml
+TIMEOUT 120
+call kubectl apply -f service-wmse2e.yml
 rem TIMEOUT 120
 rem call kubectl apply -f service-wmse2e.yamll
 

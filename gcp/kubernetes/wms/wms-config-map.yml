@@ -39,4 +39,7 @@ data:
   WORKFLOW_DB_DB: "workflow"
   WORKFLOW_DB_USER: "workflow"
   WORKFLOW_DB_PWD: "workflow"
+  WMSE2E_DB_DB: "wmstest"
+  WMSE2E_DB_USER: "wmstest"
+  WMSE2E_DB_PWD: "wmstest"
   

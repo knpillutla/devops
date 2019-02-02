@@ -8,3 +8,4 @@ kubectl apply -f postgres-packdb-service.yaml
 kubectl apply -f postgres-printdb-service.yaml
 kubectl apply -f postgres-shipenginedb-service.yaml
 kubectl apply -f postgres-workflowdb-service.yaml
+kubectl apply -f postgres-wmse2edb-service.yaml

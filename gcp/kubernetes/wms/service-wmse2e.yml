@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: wmse2e
+spec:
+  selector:
+      app: wmse2e-app
+      tier: backend      
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  type: NodePort
+---
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: wmse2e-deployment
+spec:
+  selector:
+    matchLabels:
+      app: wmse2e-app
+      tier: backend
+  replicas: 1 # tells deployment to run 4 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: wmse2e-app
+        tier: backend
+    spec:
+      containers:
+      - name: wmse2e
+        image: gcr.io/sanguine-torus-228819/wmse2e
+        envFrom:
+        - configMapRef:
+            name: wms-config
+        env:
+        - name: POSTGRES_HOST
+          value: "$(WMSE2E_DB_SERVICE_HOST):$(WMSE2E_DB_SERVICE_PORT)"
+        - name: POSTGRES_DB
+          value: "$(WMSE2E_DB_DB)"
+        - name: POSTGRES_USER
+          value: "$(WMSE2E_DB_USER)"
+        - name: POSTGRES_PWD
+          value: "$(WMSE2E_DB_PWD)"
+        - name: KAFKA_HOST
+          value: "$(KAFKA_CLUSTER_SERVICE_HOST):$(KAFKA_CLUSTER_SERVICE_PORT_KAFKA1PORT)"
+        - name: SERVER_PORT
+          value: "80"                  
+        - name: CONFIG_SERVICE
+          value: "http://$(CONFIG_SERVICE_HOST):$(CONFIG_SERVICE_PORT)"
+        - name: ORDERPLANNER_SERVICE_URL
+          value: "http://$(ORDERPLANNER_SERVICE_HOST):$(ORDERPLANNER_SERVICE_PORT)"
+        - name: PICK_SERVICE_URL
+          value: "http://$(PICK_SERVICE_HOST):$(PICK_SERVICE_PORT)"
+        - name: PACK_SERVICE_URL
+          value: "http://$(PICK_SERVICE_HOST):$(PICK_SERVICE_PORT)"
+        livenessProbe:
+          httpGet:
+            path: /wmse2e/api/health
+            port: 80
+          initialDelaySeconds: 600
+          timeoutSeconds: 2
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /wmse2e/api/ready
+            port: 80
+          initialDelaySeconds: 120
+          timeoutSeconds: 2
+          periodSeconds: 30
+        ports:
+        - containerPort: 80
+      - name: logstash
+        image: docker.elastic.co/logstash/logstash:6.3.2
+        ports:
+        - containerPort: 5000
